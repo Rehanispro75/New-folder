@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Date and Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .date-time {
+            font-size: 24px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="date-time" id="currentDate"></div>
+    <div class="date-time" id="currentTime"></div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const dayOfWeek = daysOfWeek[now.getDay()];
+            const day = now.getDate();
+            const month = monthsOfYear[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const dateString = `${dayOfWeek}, ${month} ${day}, ${year}`;
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById("currentDate").innerText = `Current Date: ${dateString}`;
+            document.getElementById("currentTime").innerText = `Current Time: ${timeString}`;
+        }
+
+        setInterval(updateDateTime, 1000);  // Update every second
+        updateDateTime();  // Initial call to display the current time immediately
+    </script>
+
+</body>
+</html>
